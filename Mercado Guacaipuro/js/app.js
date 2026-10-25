@@ -1614,16 +1614,30 @@
 
     var details = cfg.contact.details
       .map(function (item) {
+        var valueClass =
+          "contact__value" + (item.pending ? " pending" : "");
+        var value = item.href
+          ? '<a class="' +
+            valueClass +
+            '" href="' +
+            esc(item.href) +
+            '" target="_blank" rel="noopener noreferrer">' +
+            esc(item.value) +
+            "</a>"
+          : '<span class="' +
+            valueClass +
+            '">' +
+            esc(item.value) +
+            "</span>";
+
         return (
           '<div class="contact__detail">' +
           "<dt>" +
           esc(item.label) +
           "</dt>" +
-          '<dd><span class="contact__value' +
-          (item.pending ? " pending" : "") +
-          '">' +
-          esc(item.value) +
-          '</span><span class="contact__note">' +
+          "<dd>" +
+          value +
+          '<span class="contact__note">' +
           esc(item.note) +
           "</span></dd>" +
           "</div>"

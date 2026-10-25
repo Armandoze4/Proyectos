@@ -44,7 +44,7 @@ window.MERCADO_CONFIG = {
     primary: { label: "Hacer mi pedido", href: "#pedido" },
     secondary: { label: "Ver los combos", href: "#combos" },
     note:
-      "Precios de demostración. WhatsApp, puesto y redes por confirmar. Fotografía de referencia de la fachada del mercado, no del puesto.",
+      "Precios de demostración. Puesto y redes por confirmar. Fotografía de referencia de la fachada del mercado, no del puesto.",
     photos: [
       {
         key: "facade",
@@ -237,10 +237,10 @@ window.MERCADO_CONFIG = {
       refreshMs: 900000,
       timeout: 8000,
     },
-    whatsapp: "",
+    whatsapp: "584129378763",
     submit: "Enviar pedido por WhatsApp",
     pending:
-      "El WhatsApp del negocio está por confirmar. Completa el formulario y, cuando el número esté configurado, podrás enviarlo.",
+      "No se pudo preparar el enlace de WhatsApp. Revisa el número de contacto.",
     readyNote:
       "Se abrirá WhatsApp con tu pedido. Revisa el mensaje antes de enviarlo.",
     review: "Revisa los campos marcados.",
@@ -373,9 +373,9 @@ window.MERCADO_CONFIG = {
       },
       {
         label: "WhatsApp",
-        value: "Por confirmar",
-        note: "Número oficial.",
-        pending: true,
+        value: "+58 412 937 8763",
+        href: "https://wa.me/584129378763",
+        note: "Pedidos y consultas.",
       },
       {
         label: "Redes sociales",
@@ -422,7 +422,7 @@ window.MERCADO_CONFIG = {
     contact: [
       "Caracas, Venezuela",
       "Horario: lun–vie 8:00 a. m.–8:00 p. m.; sáb 8:00 a. m.–4:00 p. m.",
-      "WhatsApp: por confirmar",
+      "WhatsApp: +58 412 937 8763",
       "Redes sociales: por confirmar",
     ],
     legal:

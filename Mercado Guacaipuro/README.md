@@ -4,7 +4,7 @@ Página estática del puesto **Mercado Guaicaipuro**, en el Mercado Municipal de
 
 - catálogo local de cinco combos;
 - flujo de pedido en el navegador: varios combos, cantidades, datos del cliente y total;
-- envío del pedido por WhatsApp cuando el número esté configurado;
+- envío del pedido por WhatsApp al número configurado;
 - tarjeta de tasa oficial del dólar, actualizada desde DolarAPI;
 - tema claro/oscuro con preferencia guardada y respeto al tema del sistema;
 - catálogo opcional de solo lectura desde Google Sheets;
@@ -73,12 +73,12 @@ En `js/config.js`:
 
 ```js
 order: {
-  whatsapp: "584121234567",       // ejemplo; sustituir por el número real
+  whatsapp: "584129378763",       // número configurado
   // ...
 }
 ```
 
-El número debe ser real y estar confirmado. El código normaliza números venezolanos que empiezan por `0` o `4` y añade `58`. El mensaje de WhatsApp incluye:
+El número configurado es el `+58 412 937 8763`. El código normaliza números venezolanos que empiezan por `0` o `4` y añade `58`. El mensaje de WhatsApp incluye:
 
 - combos elegidos y cantidades;
 - cantidad y total de cada línea;
@@ -88,7 +88,7 @@ El número debe ser real y estar confirmado. El código normaliza números venez
 
 Al enviar, se abre WhatsApp en una pestaña nueva. El cliente todavía debe pulsar **Enviar** dentro de WhatsApp. Si el navegador bloquea la ventana, el estado muestra un enlace de respaldo. La página no envía nada por sí sola y no guarda el pedido.
 
-Si `order.whatsapp` está vacío, el formulario valida igual y muestra el aviso de número pendiente; no inventa un destino. También hay que actualizar el WhatsApp visible en `contact` y en el pie cuando esté confirmado.
+Si `order.whatsapp` está vacío, el formulario valida igual y muestra un aviso de que no se pudo preparar el enlace; no inventa un destino. El WhatsApp visible en `contact` y en el pie usa el mismo número configurado. Si cambia, actualiza los tres lugares editables: `order.whatsapp` (destino del pedido), `contact.details` (`value` y `href`) y `footer.contact`.
 
 ### Tasa del día
 
@@ -220,23 +220,23 @@ La integración se probó con una respuesta gviz simulada: nombres, descripcione
 
 ## Datos de demostración y datos pendientes
 
-No se inventaron teléfonos, dirección exacta del puesto, redes sociales, cobertura de delivery ni precios reales.
+No se inventaron la dirección exacta del puesto, las redes sociales, la cobertura de delivery ni los precios reales. El WhatsApp fue aportado por el negocio.
 
 - **Precios:** 12 / 24 / 38 / 10 / 9 USD. Son de demostración. Cada tarjeta dice «Precio de demostración» y el resumen lo repite.
 - **Contenidos de los combos:** son de demostración; confírmalos con el puesto.
 - **Horario y mapa:** fueron aportados por el negocio. Lunes a viernes de 8:00 a. m. a 8:00 p. m.; sábados de 8:00 a. m. a 4:00 p. m.; domingos cerrado. El mapa usa la ubicación del enlace de Google Maps proporcionado.
-- **WhatsApp, redes sociales y puesto/referencia:** aparecen como «Por confirmar».
+- **Redes sociales y puesto/referencia:** aparecen como «Por confirmar».
 - **Delivery:** «Sujeto a cobertura» y «Zona por confirmar».
 - **Fotos:** son imágenes de referencia de productos y del mercado, **no del puesto ni de los combos**. La fachada es del Mercado Municipal; el crédito y la aclaración están en la sección de contacto, en la nota del hero y en el pie.
 - **Tasa del día:** se consulta a DolarAPI; no es un precio de demostración. Se usa para mostrar el equivalente en Bs. del resumen; no cambia los precios base. Si la API no responde, la tarjeta y el resumen muestran un aviso.
-- **WhatsApp:** no hay número todavía. El formulario valida, pero no abre un chat real. El botón de contacto no es un enlace `wa.me`.
+- **WhatsApp:** `+58 412 937 8763`. El formulario abre `wa.me` con el pedido preparado; el número de la sección de contacto también enlaza a `wa.me`. No se probó en un teléfono físico ni con la app de WhatsApp.
 - **Catálogo:** desactivado por defecto. El archivo `datos/combos-ejemplo.csv` sirve para preparar la hoja; no está conectado a ninguna hoja real.
 - **Pedidos:** no hay backend, base de datos, carrito persistente, pago ni registro de pedidos. El flujo termina en WhatsApp.
 
 Antes de publicar hay que confirmar, como mínimo:
 
 1. precios, moneda, vigencia y contenidos reales;
-2. número de WhatsApp y responsable de responder;
+2. responsable de responder el WhatsApp (el número ya está configurado);
 3. dirección/referencia exacta del puesto y zonas de delivery;
 4. fotos propias o autorizadas de los combos y del puesto;
 5. aviso de privacidad y tratamiento de datos definitivo;
@@ -316,7 +316,7 @@ Prueba CDP en Chrome a 1440 × 900, 764 × 900 y 390 × 844:
 
 ### Pedido y validación
 
-Prueba con la configuración real (WhatsApp vacío) y con un número simulado en tiempo de ejecución:
+Prueba con el número configurado y con un número vacío simulado en tiempo de ejecución:
 
 - el botón «Pedir» de una tarjeta agrega una unidad y enfoca el control de cantidad;
 - el stepper suma; Básico + Familiar da `$ 36,00`;
@@ -325,8 +325,8 @@ Prueba con la configuración real (WhatsApp vacío) y con un número simulado en
 - cédula inválida: error y foco en `pedido-id`;
 - dirección corta: error y foco en `pedido-address`;
 - consentimiento sin marcar: error y foco en el checkbox;
-- con el número vacío: estado de WhatsApp pendiente, sin abrir ventana;
-- con un número simulado: se abre `wa.me` con el mensaje completo; incluye combos, cantidades, precios, total, nombre, teléfono, cédula, dirección y notas;
+- con el número configurado: se abre `https://wa.me/584129378763` con el mensaje completo; incluye combos, cantidades, precios, total, nombre, teléfono, cédula, dirección y notas;
+- con `order.whatsapp` vacío (simulado): estado de WhatsApp pendiente, sin abrir ventana;
 - el fallback de ventana bloqueada existe, pero no se probó con un bloqueador real.
 
 ### Comparador
@@ -351,6 +351,7 @@ Prueba con la API real y con una respuesta 500 simulada:
 
 - el iframe de Google Maps se cargó en Chrome headless con el mapa centrado en las coordenadas del enlace corto;
 - el enlace «Abrir en Google Maps» apunta a `https://maps.app.goo.gl/kpiPEbp9Uqp1W31V7` y abre en otra pestaña;
+- el número `+58 412 937 8763` aparece en contacto y en el pie; el de contacto enlaza a `https://wa.me/584129378763` con `target="_blank"` y `rel="noopener noreferrer"`;
 - el horario visible es lunes a viernes de 8:00 a. m. a 8:00 p. m. y sábados de 8:00 a. m. a 4:00 p. m.; domingos cerrado;
 - el mapa no genera desbordamiento horizontal a 390, 764 ni 1440 px;
 - no se probó con bloqueadores de terceros, cookies de Google rechazadas ni una caída de Google Maps.
@@ -380,7 +381,7 @@ No se probó el botón con lectores de pantalla reales ni con un cambio de tema 
 
 ### No probado
 
-- WhatsApp real: falta el número. No se probó en un teléfono físico ni con la app de WhatsApp.
+- WhatsApp real: número configurado, pero no se probó en un teléfono físico ni con la app de WhatsApp.
 - Google Sheets real: falta la hoja y el ID.
 - Tasa del día: caída real de DolarAPI, límites o cambios de formato de la API y espera de 15 minutos.
 - Safari, Firefox, lectores de pantalla reales (NVDA/VoiceOver), teléfonos físicos, axe/Lighthouse, red lenta o bloqueada.
