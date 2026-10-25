@@ -6,6 +6,7 @@ Página estática del puesto **Mercado Guaicaipuro**, en el Mercado Municipal de
 - flujo de pedido en el navegador: varios combos, cantidades, datos del cliente y total;
 - envío del pedido por WhatsApp cuando el número esté configurado;
 - tarjeta de tasa oficial del dólar, actualizada desde DolarAPI;
+- tema claro/oscuro con preferencia guardada y respeto al tema del sistema;
 - catálogo opcional de solo lectura desde Google Sheets;
 - validación accesible del formulario y aviso de privacidad.
 
@@ -28,10 +29,10 @@ Si se activa Google Sheets, la página necesita internet para leer la hoja. Si l
 
 | Archivo | Para qué sirve |
 | --- | --- |
-| `index.html` | Estructura, metadatos, JSON-LD, enlace de salto y resumen `<noscript>`. |
-| `css/estilos.css` | Sistema visual, composición split stage, formulario, esquinas redondeadas y responsive. |
-| `js/config.js` | **Contenido editable**: marca, textos, combos, pedido, catálogo, servicios, contacto, pie y créditos. |
-| `js/app.js` | Render, comparador «Arma tu lista», formulario, total, mensaje de WhatsApp, tasa del día, lector de Google Sheets, revelado y cambio de foto. |
+| `index.html` | Estructura, metadatos, JSON-LD, script de tema sin destello, enlace de salto y resumen `<noscript>`. |
+| `css/estilos.css` | Sistema visual, tokens de tema claro/oscuro, composición split stage, formulario, esquinas redondeadas y responsive. |
+| `js/config.js` | **Contenido editable**: marca, textos, combos, pedido, tema, catálogo, servicios, contacto, pie y créditos. |
+| `js/app.js` | Render, botón de tema, comparador «Arma tu lista», formulario, total, mensaje de WhatsApp, tasa del día, lector de Google Sheets, revelado y cambio de foto. |
 | `datos/combos-ejemplo.csv` | Plantilla para importar el catálogo en Google Sheets. |
 | `assets/img/` | Fotos y `credits.json` con la ficha de cada una. |
 
@@ -42,6 +43,7 @@ No se usan frameworks, librerías de UI ni dependencias de JavaScript. Los recur
 Todo el contenido está en `js/config.js`:
 
 - `brand`, `currency`, `nav` y `navAction`.
+- `theme`: etiquetas accesibles del botón de tema claro/oscuro.
 - `hero`: título, entrada, botones, nota y fotos del escenario.
 - `combos`: título, introducción, nota, comparador (`helper`) y los cinco combos (`items`).
 - `order`: textos del pedido, tasa del día, WhatsApp, mensajes, etiquetas y textos de los campos.
@@ -132,6 +134,29 @@ map: {
 ```
 
 `src` es la URL de inserción de Google Maps (la que funciona dentro del iframe); `href` es el enlace corto que se abre en otra pestaña. Si cambia la ubicación, actualiza ambos. El iframe usa `loading="lazy"` y un título accesible. El mapa es un servicio externo: al cargarse, Google puede registrar la solicitud y usar cookies propias.
+
+### Tema claro y oscuro
+
+La cabecera incluye un botón de tema con icono de luna (pasa a oscuro) o de sol (vuelve a claro). En `js/config.js` se editan sus etiquetas accesibles:
+
+```js
+theme: {
+  light: "Activar modo claro",
+  dark: "Activar modo oscuro",
+}
+```
+
+- Si no hay una preferencia guardada, la primera visita sigue el tema del sistema (`prefers-color-scheme`).
+- La elección se guarda en `localStorage` con la clave `mercado-theme`; no se envía a ningún servidor.
+- El botón mide 44 × 44 px, tiene `aria-label` y `title` dinámicos, y sus iconos son decorativos.
+- Un script pequeño en el `<head>` aplica el tema antes de cargar el CSS para evitar el destello del tema claro.
+- `data-theme="dark"` en `<html>` cambia los tokens de color; también se actualizan `color-scheme` y `meta[name="theme-color"]`.
+- En oscuro, el papel pasa a verde-negro, los paneles verdes se aclaran y el rojo de texto se vuelve coral para conservar contraste; los botones rojos mantienen texto claro.
+- El tema no altera precios, catálogo, pedido, mapa ni el funcionamiento del formulario.
+
+La preferencia de tema también puede borrarse desde la configuración del navegador; al hacerlo, la página vuelve a seguir el tema del sistema.
+
+> Si cambias los colores de `--bg` en `css/estilos.css`, actualiza también los valores `#ecebe7` y `#0e1311` del script de `index.html` y de `js/app.js` para que `meta[name="theme-color"]` acompañe al tema.
 
 ## Catálogo desde Google Sheets
 
@@ -240,16 +265,17 @@ Es una interacción local y no envía ningún pedido. Si Google Sheets oculta un
 - Estado del comparador, del resumen y del envío con `aria-live="polite"`.
 - La tarjeta de tasa usa `role="status"` y `aria-live="polite"`; anuncia la carga, el valor y el error sin bloquear el formulario.
 - El resumen muestra los importes en USD y Bs. y anuncia el estado de la tasa con `aria-live="polite"`.
+- El botón de tema claro/oscuro mide 44 × 44 px, tiene nombre accesible dinámico y respeta `prefers-color-scheme`; la preferencia se guarda en `localStorage`.
 - Imágenes de combos y fachada con texto alternativo; fotos decorativas con `alt=""` y el aside del stage con `aria-hidden="true"`.
-- Respeto a `prefers-reduced-motion`: se desactivan el revelado, el cambio de foto y el desplazamiento suave.
+- Respeto a `prefers-reduced-motion`: se desactivan el revelado, el cambio de foto, el desplazamiento suave y las transiciones de controles, incluido el botón de tema.
 - El cambio de foto del escenario se adapta al pasar de móvil a escritorio y viceversa.
 - Contraste revisado visualmente; no se detectaron avisos en la revisión de esta fase. No se ejecutó axe/Lighthouse.
-- La página se renderiza con JavaScript; el `<noscript>` ofrece un resumen útil, pero el catálogo, el comparador y el pedido requieren JS.
+- La página se renderiza con JavaScript; el `<noscript>` ofrece un resumen útil, pero el catálogo, el comparador, el pedido y el botón de tema requieren JS. Sin JS se usa el tema claro.
 - La foto del hero y el pie usan `svh`; se incluyó un fallback `vh`.
 
 ## Privacidad
 
-El formulario se procesa en el navegador. La página no envía los datos a un servidor propio, no los guarda y no instala cookies propias de seguimiento ni analítica. Al pulsar el botón de envío, el navegador abre WhatsApp con un mensaje que contiene los datos escritos; desde ese momento se aplican las políticas de WhatsApp y del negocio. El mapa se inserta desde Google Maps como iframe; al cargarse, Google puede registrar la solicitud y usar cookies propias. La hoja de Google Sheets es pública de lectura y solo debe contener datos del catálogo, nunca datos de clientes. La tipografía Switzer se carga desde Fontshare, que puede registrar la solicitud. La tarjeta de tasa consulta DolarAPI; esa solicitud no incluye datos del cliente, pero el proveedor puede registrar la IP o el navegador. Antes de publicar, sustituye el aviso básico del pie por el aviso de privacidad definitivo.
+El formulario se procesa en el navegador. La página no envía los datos a un servidor propio, no los guarda y no instala cookies propias de seguimiento ni analítica. La preferencia de tema claro/oscuro se guarda en `localStorage` del navegador y no se envía a ningún servidor. Al pulsar el botón de envío, el navegador abre WhatsApp con un mensaje que contiene los datos escritos; desde ese momento se aplican las políticas de WhatsApp y del negocio. El mapa se inserta desde Google Maps como iframe; al cargarse, Google puede registrar la solicitud y usar cookies propias. La hoja de Google Sheets es pública de lectura y solo debe contener datos del catálogo, nunca datos de clientes. La tipografía Switzer se carga desde Fontshare, que puede registrar la solicitud. La tarjeta de tasa consulta DolarAPI; esa solicitud no incluye datos del cliente, pero el proveedor puede registrar la IP o el navegador. Antes de publicar, sustituye el aviso básico del pie por el aviso de privacidad definitivo.
 
 ## Créditos de las imágenes
 
@@ -329,6 +355,21 @@ Prueba con la API real y con una respuesta 500 simulada:
 - el mapa no genera desbordamiento horizontal a 390, 764 ni 1440 px;
 - no se probó con bloqueadores de terceros, cookies de Google rechazadas ni una caída de Google Maps.
 
+### Tema claro y oscuro
+
+Prueba CDP en Chrome headless con un perfil nuevo, a 1440 × 1000, 390 × 844, 360 × 844 y 320 × 844:
+
+- el botón de 44 × 44 px aparece en la cabecera, con icono de luna en claro y de sol en oscuro, `aria-label` y `title` correctos, y `type="button"`;
+- al pulsarlo, `data-theme` pasa a `dark`, `color-scheme` a `dark`, `meta[name="theme-color"]` a `#0e1311` y la preferencia queda en `localStorage` como `dark`;
+- el tema oscuro aplica el papel verde-negro, el texto hueso, el coral de texto y los paneles verdes aclarados en portada, combos, pedido, servicios, contacto y pie;
+- al recargar se conserva el tema oscuro; al volver a pulsar se recupera el claro y se guarda `light`;
+- sin preferencia guardada, con el sistema en oscuro la página abre en oscuro; con el sistema en claro, abre en claro;
+- un cambio de `prefers-color-scheme` sin preferencia guardada actualiza el tema en vivo; con una preferencia guardada, el sistema no la pisa;
+- a 320, 360 y 390 px no hay desbordamiento horizontal y el botón queda dentro del ancho visible, junto a «Pedir»; a 360 y 390 px la cabecera cabe en una fila y la navegación en otra; a 320 px la navegación ocupa dos filas y el botón sigue en la primera;
+- sin mensajes de consola ni excepciones.
+
+No se probó el botón con lectores de pantalla reales ni con un cambio de tema real del sistema operativo en un teléfono físico; el cambio de sistema se simuló con CDP.
+
 ### Google Sheets
 
 - Prueba con una respuesta gviz simulada (sin hoja real): se aplicaron nombres, descripciones, precios, fotos, `foto_alt`, destacado y orden;
@@ -344,6 +385,7 @@ Prueba con la API real y con una respuesta 500 simulada:
 - Tasa del día: caída real de DolarAPI, límites o cambios de formato de la API y espera de 15 minutos.
 - Safari, Firefox, lectores de pantalla reales (NVDA/VoiceOver), teléfonos físicos, axe/Lighthouse, red lenta o bloqueada.
 - Google Maps con bloqueadores de terceros, cookies rechazadas o caída del servicio.
+- Tema claro/oscuro con lectores de pantalla reales o con el cambio de tema real del sistema operativo en un dispositivo físico.
 - Pago, disponibilidad real, delivery real, dirección exacta del puesto y atención al cliente.
 - Los scripts `lint.mjs` e `inspect.mjs` de la fase 1 no forman parte del proyecto y no se volvieron a ejecutar en esta fase; las comprobaciones anteriores se sustituyeron por las pruebas CDP descritas.
 
@@ -356,5 +398,6 @@ Prueba con la API real y con una respuesta 500 simulada:
 - El pedido mantiene la jerarquía de la marca y usa el mismo lenguaje redondeado en el panel, los campos, los steppers y el resumen.
 - La tarjeta de tasa del día es una pieza compacta verde-negro de 300 px dentro del encabezado del pedido; muestra `1$ = Bs. ...`, la fuente y la fecha sin competir con el título.
 - El resumen presenta el importe en USD como principal y el equivalente en Bs. debajo, tanto por línea como en el total; la nota indica la tasa aplicada.
+- La cabecera incluye un botón de tema de 44 px; el modo oscuro cambia el papel hueso por verde-negro, aclara los paneles verdes y usa coral para el texto rojo. Los botones rojos conservan texto claro.
 - Las imágenes se redujeron de ~4,1 MB a ~1,35 MB (calidad 80) manteniendo la fachada legible.
 - La página usa `svh` con fallback `vh`; el movimiento se desactiva con `prefers-reduced-motion`.

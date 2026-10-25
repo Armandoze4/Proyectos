@@ -32,6 +32,11 @@ window.MERCADO_CONFIG = {
 
   navAction: { label: "Pedir", href: "#pedido" },
 
+  theme: {
+    light: "Activar modo claro",
+    dark: "Activar modo oscuro",
+  },
+
   hero: {
     titleLines: ["Tus compras del día,", "más fáciles"],
     lead:
@@ -425,7 +430,7 @@ window.MERCADO_CONFIG = {
     privacy: {
       title: "Aviso de privacidad",
       text:
-        "El formulario de pedido no envía datos a un servidor: prepara un mensaje y abre WhatsApp, y el negocio usará los datos para coordinar la entrega. La página no instala cookies propias de seguimiento ni analítica. El mapa se inserta desde Google Maps como iframe; al cargarse, Google puede registrar la solicitud y usar cookies propias. Si el catálogo está conectado a Google Sheets, se leen datos públicos de la hoja (combos y fotos); no se envían datos personales a Google. La tipografía Switzer se carga desde Fontshare, un servicio externo que puede registrar la solicitud.",
+        "El formulario de pedido no envía datos a un servidor: prepara un mensaje y abre WhatsApp, y el negocio usará los datos para coordinar la entrega. La página no instala cookies propias de seguimiento ni analítica. La preferencia de tema claro/oscuro se guarda en el almacenamiento local del navegador y no se envía a ningún servidor. El mapa se inserta desde Google Maps como iframe; al cargarse, Google puede registrar la solicitud y usar cookies propias. Si el catálogo está conectado a Google Sheets, se leen datos públicos de la hoja (combos y fotos); no se envían datos personales a Google. La tipografía Switzer se carga desde Fontshare, un servicio externo que puede registrar la solicitud.",
     },
     creditsTitle: "Créditos de las imágenes",
     creditsNote:

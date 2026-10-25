@@ -23,6 +23,11 @@
   var rateBound = false;
   var rateFetchInFlight = false;
   var refreshOrderSummary = null;
+  var themeMedia = window.matchMedia
+    ? window.matchMedia("(prefers-color-scheme: dark)")
+    : null;
+  var themeBound = false;
+  var THEME_KEY = "mercado-theme";
 
   /* ------------------------------------------------------------------ */
   /* Utilidades                                                          */
@@ -147,6 +152,81 @@
   }
 
   /* ------------------------------------------------------------------ */
+  /* Tema claro / oscuro                                                 */
+  /* ------------------------------------------------------------------ */
+
+  function currentTheme() {
+    return root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  }
+
+  function themeLabel(theme) {
+    var labels = cfg.theme || {};
+    return theme === "dark"
+      ? labels.light || "Activar modo claro"
+      : labels.dark || "Activar modo oscuro";
+  }
+
+  function updateThemeColor(theme) {
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute("content", theme === "dark" ? "#0e1311" : "#ecebe7");
+    }
+  }
+
+  function syncThemeToggle() {
+    var button = document.querySelector("[data-theme-toggle]");
+    if (!button) return;
+    var label = themeLabel(currentTheme());
+    button.setAttribute("aria-label", label);
+    button.setAttribute("title", label);
+  }
+
+  function applyTheme(theme, persist) {
+    var next = theme === "dark" ? "dark" : "light";
+    root.setAttribute("data-theme", next);
+    updateThemeColor(next);
+    if (persist) {
+      try {
+        window.localStorage.setItem(THEME_KEY, next);
+      } catch (error) {
+        /* El tema sigue funcionando aunque el navegador bloquee el almacenamiento. */
+      }
+    }
+    syncThemeToggle();
+  }
+
+  function initThemeToggle() {
+    if (themeBound) return;
+    var button = document.querySelector("[data-theme-toggle]");
+    if (!button) return;
+    themeBound = true;
+    syncThemeToggle();
+
+    button.addEventListener("click", function () {
+      applyTheme(currentTheme() === "dark" ? "light" : "dark", true);
+    });
+
+    if (themeMedia) {
+      var onSystemThemeChange = function (event) {
+        var stored = null;
+        try {
+          stored = window.localStorage.getItem(THEME_KEY);
+        } catch (error) {
+          stored = null;
+        }
+        if (stored === "dark" || stored === "light") return;
+        applyTheme(event.matches ? "dark" : "light", false);
+      };
+
+      if (typeof themeMedia.addEventListener === "function") {
+        themeMedia.addEventListener("change", onSystemThemeChange);
+      } else if (typeof themeMedia.addListener === "function") {
+        themeMedia.addListener(onSystemThemeChange);
+      }
+    }
+  }
+
+  /* ------------------------------------------------------------------ */
   /* Cabecera                                                            */
   /* ------------------------------------------------------------------ */
 
@@ -179,7 +259,20 @@
       esc(cfg.navAction.href) +
       '">' +
       esc(cfg.navAction.label) +
-      ' <span aria-hidden="true">→</span></a>';
+      ' <span aria-hidden="true">→</span></a>' +
+      '<button class="theme-toggle" type="button" data-theme-toggle aria-label="' +
+      esc(themeLabel(currentTheme())) +
+      '" title="' +
+      esc(themeLabel(currentTheme())) +
+      '">' +
+      '<svg class="theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>' +
+      "</svg>" +
+      '<svg class="theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+      '<circle cx="12" cy="12" r="4"></circle>' +
+      '<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>' +
+      "</svg>" +
+      "</button>";
   }
 
   /* ------------------------------------------------------------------ */
@@ -1832,6 +1925,7 @@
 
   function init() {
     renderNav();
+    initThemeToggle();
     renderHero();
     renderStageMedia();
     renderAbout();

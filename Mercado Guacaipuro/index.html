@@ -9,7 +9,32 @@
       content="Combos de la cesta básica, pedido por WhatsApp, delivery sujeto a cobertura y retiro en el Mercado Municipal de Guaicaipuro, Caracas. Precios de demostración."
     />
     <meta name="theme-color" content="#ecebe7" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
+
+    <script>
+      (function () {
+        var theme = "light";
+        var stored = null;
+        try {
+          stored = window.localStorage.getItem("mercado-theme");
+        } catch (error) {
+          stored = null;
+        }
+        if (stored === "dark" || stored === "light") {
+          theme = stored;
+        } else if (
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+        ) {
+          theme = "dark";
+        }
+        document.documentElement.setAttribute("data-theme", theme);
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) {
+          meta.setAttribute("content", theme === "dark" ? "#0e1311" : "#ecebe7");
+        }
+      })();
+    </script>
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_VE" />
