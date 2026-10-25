@@ -1,0 +1,6 @@
+id,nombre,descripcion,precio,foto,foto_alt,destacado,activo,orden
+basico,Básico,Para el día a día,12,assets/img/bowl-of-white-rice-01.jpg,Arroz blanco en un bol,FALSE,TRUE,1
+familiar,Familiar,Para compartir en casa,24,assets/img/black-beans-uncooked-2024-11-27.jpg,Caraotas negras crudas vistas de cerca,FALSE,TRUE,2
+rendidor,Rendidor,Para resolver la semana,38,assets/img/corn-flour.jpg,Harina de maíz en un puesto de mercado,TRUE,TRUE,3
+desayuno,Desayuno,Para empezar el día,10,assets/img/roasted-coffee-beans.jpg,Granos de café tostado,FALSE,TRUE,4
+ahorro,Ahorro,Lo esencial sin extra,9,assets/img/plantains.jpg,Plátanos verdes en una caja de cartón,FALSE,TRUE,5
