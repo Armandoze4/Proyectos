@@ -416,6 +416,19 @@ ul.ck svg{width:16px;height:16px;flex:none;margin-top:2px;color:var(--green-ink)
 .detail h4{font-size:12px;letter-spacing:.02em;color:var(--amber);margin:18px 0 6px;font-family:'DM Sans',sans-serif;font-weight:700}
 .detail p{color:var(--dark-muted-2);font-size:15px;line-height:1.6}
 .detail .btn{width:100%;margin-top:12px}
+.detail .chat{margin:22px 0;border:1px solid var(--dark-border);border-radius:14px;overflow:hidden;background:var(--dark-card)}
+.detail .chat h4{font-size:12px;letter-spacing:.02em;color:var(--amber);margin:0;padding:12px 16px;background:rgba(255,255,255,.04);border-bottom:1px solid var(--dark-border);font-family:'DM Sans',sans-serif;font-weight:700}
+.detail .chat figure{margin:0}
+.detail .chat img{width:100%;height:auto;display:block;background:#0a0a0a}
+.detail .chat figcaption{padding:10px 16px;font-size:13px;color:var(--dark-muted-2)}
+.detail .reseña{margin:22px 0;padding:18px 20px;border:1px solid var(--dark-border);border-radius:14px;background:var(--dark-card)}
+.detail .reseña h4{font-size:12px;letter-spacing:.02em;color:var(--amber);margin:0 0 10px;font-family:'DM Sans',sans-serif;font-weight:700}
+.detail .reseña .stars{color:var(--amber);gap:5px;margin-bottom:8px}
+.detail .reseña .stars svg{width:17px;height:17px;fill:currentColor}
+.detail .reseña p{font-size:15px;line-height:1.6;color:var(--dark-muted-2);margin:0 0 10px}
+.detail .reseña .who{display:flex;align-items:center;gap:10px;font-size:14px}
+.detail .reseña .who b{display:block;color:var(--dark-text)}
+.detail .reseña .who small{color:var(--dark-muted-2);font-size:12px}
 
 /* ===== 9. Proceso ===== */
 .steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;list-style:none;padding:0;text-align:left}
@@ -891,7 +904,7 @@ html.theme-transition *,html.theme-transition *::before,html.theme-transition *:
       </div>
       <div class="trust">
         <span><i data-lucide="check" aria-hidden="true"></i>Entrega en 3–7 días</span>
-        <span><i data-lucide="check" aria-hidden="true"></i>Editas tus precios</span>
+        <span><i data-lucide="check" aria-hidden="true"></i>Editas tus precios (plan PRO)</span>
         <span><i data-lucide="check" aria-hidden="true"></i>Dominio y hosting opcionales (cotizados aparte)</span>
       </div>
     </div>
@@ -927,9 +940,9 @@ html.theme-transition *,html.theme-transition *::before,html.theme-transition *:
 <div class="stats">
   <div class="wrap">
     <div><b>3–7 días</b><span>Entrega promedio</span></div>
-    <div><b>100%</b><span>Editable por ti</span></div>
+    <div><span>Editable por ti (plan PRO)</span></div>
     <div><b>&lt; 24 h</b><span>Respuesta por WhatsApp</span></div>
-    <div><b class="a">Desde S/ 150</b><span>Planes de lanzamiento</span></div>
+    <div><b class="a">Desde S/ 190</b><span>Planes de lanzamiento</span></div>
   </div>
 </div>
 
@@ -942,47 +955,47 @@ html.theme-transition *,html.theme-transition *::before,html.theme-transition *:
       <article class="card rv" style="--i:0">
         <div class="ico"><i data-lucide="layout-template" aria-hidden="true"></i></div>
         <h3>Landing básica</h3>
-        <p>Una página que presenta tu negocio y convierte visitas en mensajes.</p>
+        <p>Tarjeta digital de 3 secciones que presenta tu negocio y te lleva a WhatsApp.</p>
         <ul class="ck">
           <li><i data-lucide="check" aria-hidden="true"></i>Diseño responsive</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Botón directo a WhatsApp</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Publicación incluida</li>
         </ul>
-        <div class="foot"><span class="tag">S/ 150</span><a class="btn btn-wa" data-wa="Hola, quiero contratar la Landing básica (S/ 150)." href="#contacto">Contratar <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+        <div class="foot"><span class="tag">S/ 190</span><a class="btn btn-wa" data-wa="Hola, quiero contratar la Landing básica (S/ 190)." href="#contacto">Contratar <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
       </article>
       <article class="card featured rv" style="--i:1">
         <span class="card-badge">Recomendada</span>
         <div class="ico"><i data-lucide="layout-template" aria-hidden="true"></i></div>
         <h3>Landing elaborada</h3>
-        <p>Hasta 5 secciones con animaciones suaves y galería para destacar tu negocio.</p>
+        <p>Diseño premium de hasta 6 secciones, con animaciones suaves y galería para destacar tu negocio.</p>
         <ul class="ck">
-          <li><i data-lucide="check" aria-hidden="true"></i>Hasta 5 secciones</li>
+          <li><i data-lucide="check" aria-hidden="true"></i>Hasta 6 secciones</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Animaciones suaves</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Guía de edición PDF</li>
         </ul>
-        <div class="foot"><span class="tag am">S/ 250</span><a class="btn btn-wa" data-wa="Hola, quiero contratar la Landing elaborada (S/ 250)." href="#contacto">Contratar <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+        <div class="foot"><span class="tag am">S/ 350</span><a class="btn btn-wa" data-wa="Hola, quiero contratar la Landing elaborada (S/ 350)." href="#contacto">Contratar <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
       </article>
       <article class="card rv" style="--i:2">
         <div class="ico"><i data-lucide="shopping-bag" aria-hidden="true"></i></div>
-        <h3>Catálogo digital</h3>
-        <p>Hasta 30 productos con fotos, precios, categorías y buscador.</p>
+        <h3>Menú QR PRO / Catálogo digital</h3>
+        <p>Hasta 30 productos con fotos, precios, categorías, buscador y carrito que envía el pedido a tu WhatsApp.</p>
         <ul class="ck">
           <li><i data-lucide="check" aria-hidden="true"></i>Hasta 30 productos</li>
-          <li><i data-lucide="check" aria-hidden="true"></i>Pedidos por WhatsApp</li>
-          <li><i data-lucide="check" aria-hidden="true"></i>Edición en Google Sheets</li>
+          <li><i data-lucide="check" aria-hidden="true"></i>Carrito con pedido a WhatsApp</li>
+          <li><i data-lucide="check" aria-hidden="true"></i>Panel autogestionable en Google Sheets</li>
         </ul>
-        <div class="foot"><span class="tag">S/ 250</span><a class="btn btn-wa" data-wa="Hola, quiero contratar el Catálogo digital (S/ 250)." href="#contacto">Contratar <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+        <div class="foot"><span class="tag">S/ 290</span><a class="btn btn-wa" data-wa="Hola, quiero contratar el Menú QR PRO / Catálogo digital (S/ 290)." href="#contacto">Contratar <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
       </article>
       <article class="card rv" style="--i:3">
         <div class="ico"><i data-lucide="qr-code" aria-hidden="true"></i></div>
-        <h3>Menú QR</h3>
-        <p>Hasta 30 platos con código QR personalizado para tu restaurante o negocio gastronómico.</p>
+        <h3>Menú QR básico</h3>
+        <p>Menú estático de hasta 30 platos con código QR. Los cambios los hago yo.</p>
         <ul class="ck">
           <li><i data-lucide="check" aria-hidden="true"></i>Hasta 30 platos</li>
-          <li><i data-lucide="check" aria-hidden="true"></i>QR listo para imprimir</li>
-          <li><i data-lucide="check" aria-hidden="true"></i>Edición en Google Sheets</li>
+          <li><i data-lucide="check" aria-hidden="true"></i>QR + kit de exhibición (afiche A4 y hablador A6)</li>
+          <li><i data-lucide="check" aria-hidden="true"></i>Cambios hechos por mí (dentro de las rondas incluidas)</li>
         </ul>
-        <div class="foot"><span class="tag">S/ 180</span><a class="btn btn-wa" data-wa="Hola, quiero contratar el Menú QR (S/ 180)." href="#contacto">Contratar <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
+        <div class="foot"><span class="tag">S/ 190</span><a class="btn btn-wa" data-wa="Hola, quiero contratar el Menú QR básico (S/ 190)." href="#contacto">Contratar <i data-lucide="arrow-right" aria-hidden="true"></i></a></div>
       </article>
     </div>
   </div>
@@ -1036,7 +1049,7 @@ html.theme-transition *,html.theme-transition *::before,html.theme-transition *:
     <div>
       <p class="eyebrow">Tu sitio, tus reglas</p>
       <h2 id="edit-title">Cambia precios y productos tú mismo. Sin pagar cada cambio.</h2>
-      <p class="sub">Actualizas una hoja simple y tu página se refresca sola. Incluye una guía en PDF con capturas paso a paso.</p>
+      <p class="sub">En el plan PRO actualizas una hoja simple y tu página se refresca sola. Incluye una guía en PDF con capturas paso a paso.</p>
       <ul class="ck">
         <li><i data-lucide="check" aria-hidden="true"></i>Sin saber programar</li>
         <li><i data-lucide="check" aria-hidden="true"></i>Dominio y hosting opcionales (cotizados aparte)</li>
@@ -1062,57 +1075,57 @@ html.theme-transition *,html.theme-transition *::before,html.theme-transition *:
     <div class="plans">
       <div class="plan rv">
         <h3>Landing básica</h3>
-        <div class="price">S/ 150</div>
-        <p>Una página que presenta tu negocio y convierte visitas en mensajes.</p>
+        <div class="price">S/ 190</div>
+        <p>Tarjeta digital de 3 secciones que presenta tu negocio y te lleva a WhatsApp.</p>
         <hr>
         <ul class="ck">
           <li><i data-lucide="check" aria-hidden="true"></i>Diseño responsive</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Botón directo a WhatsApp</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Publicación incluida</li>
-          <li><i data-lucide="check" aria-hidden="true"></i>1 ronda de ajustes</li>
+          <li><i data-lucide="check" aria-hidden="true"></i>2 rondas de ajustes</li>
         </ul>
-        <a class="btn btn-wa" data-wa="Hola, quiero contratar la Landing básica (S/ 150)." href="#contacto">Contratar por WhatsApp</a>
+        <a class="btn btn-wa" data-wa="Hola, quiero contratar la Landing básica (S/ 190)." href="#contacto">Contratar por WhatsApp</a>
       </div>
       <div class="plan featured rv" style="--i:1">
         <h3>Landing elaborada <span class="tag am">Recomendada</span></h3>
-        <div class="price">S/ 250</div>
-        <p>Hasta 5 secciones con animaciones suaves y galería de proyectos.</p>
+        <div class="price">S/ 350</div>
+        <p>Diseño premium de hasta 6 secciones, con animaciones suaves y galería para destacar tu negocio.</p>
         <hr>
         <ul class="ck">
-          <li><i data-lucide="check" aria-hidden="true"></i>Hasta 5 secciones</li>
+          <li><i data-lucide="check" aria-hidden="true"></i>Hasta 6 secciones</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Animaciones suaves</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Galería de imágenes o proyectos</li>
-          <li><i data-lucide="check" aria-hidden="true"></i>3 rondas de ajustes</li>
+          <li><i data-lucide="check" aria-hidden="true"></i>2 rondas de ajustes</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Guía de edición PDF</li>
         </ul>
-        <a class="btn btn-wa" data-wa="Hola, quiero contratar la Landing elaborada (S/ 250)." href="#contacto">Contratar por WhatsApp</a>
+        <a class="btn btn-wa" data-wa="Hola, quiero contratar la Landing elaborada (S/ 350)." href="#contacto">Contratar por WhatsApp</a>
       </div>
       <div class="plan rv" style="--i:2">
-        <h3>Catálogo digital</h3>
-        <div class="price">S/ 250</div>
-        <p>Hasta 30 productos organizados por categorías con buscador y pedidos por WhatsApp.</p>
+        <h3>Menú QR PRO / Catálogo digital</h3>
+        <div class="price">S/ 290</div>
+        <p>Hasta 30 productos con fotos, precios, categorías, buscador y carrito que envía el pedido a tu WhatsApp.</p>
         <hr>
         <ul class="ck">
           <li><i data-lucide="check" aria-hidden="true"></i>Hasta 30 productos</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Fotografías y precios</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Buscador de productos</li>
-          <li><i data-lucide="check" aria-hidden="true"></i>Pedidos por WhatsApp</li>
-          <li><i data-lucide="check" aria-hidden="true"></i>Edición en Google Sheets</li>
+          <li><i data-lucide="check" aria-hidden="true"></i>Carrito con pedido a WhatsApp</li>
+          <li><i data-lucide="check" aria-hidden="true"></i>Panel autogestionable en Google Sheets</li>
         </ul>
-        <a class="btn btn-wa" data-wa="Hola, quiero contratar el Catálogo digital (S/ 250)." href="#contacto">Contratar por WhatsApp</a>
+        <a class="btn btn-wa" data-wa="Hola, quiero contratar el Menú QR PRO / Catálogo digital (S/ 290)." href="#contacto">Contratar por WhatsApp</a>
       </div>
       <div class="plan rv" style="--i:3">
-        <h3>Menú QR</h3>
-        <div class="price">S/ 180</div>
-        <p>Hasta 30 platos con código QR personalizado para tu negocio gastronómico.</p>
+        <h3>Menú QR básico</h3>
+        <div class="price">S/ 190</div>
+        <p>Menú estático de hasta 30 platos con código QR. Los cambios los hago yo.</p>
         <hr>
         <ul class="ck">
           <li><i data-lucide="check" aria-hidden="true"></i>Hasta 30 platos o productos</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Código QR personalizado</li>
           <li><i data-lucide="check" aria-hidden="true"></i>Organizado por categorías</li>
-          <li><i data-lucide="check" aria-hidden="true"></i>Edición en Google Sheets</li>
+          <li><i data-lucide="check" aria-hidden="true"></i>Cambios hechos por mí (dentro de las rondas incluidas)</li>
         </ul>
-        <a class="btn btn-wa" data-wa="Hola, quiero contratar el Menú QR (S/ 180)." href="#contacto">Contratar por WhatsApp</a>
+        <a class="btn btn-wa" data-wa="Hola, quiero contratar el Menú QR básico (S/ 190)." href="#contacto">Contratar por WhatsApp</a>
       </div>
     </div>
     <p class="domain"><i data-lucide="globe" aria-hidden="true"></i>¿Quieres dominio propio (tunegocio.com)? Te armo un combo según el precio del dominio. Queda a tu nombre.</p>
@@ -1129,7 +1142,7 @@ html.theme-transition *,html.theme-transition *::before,html.theme-transition *:
       <div class="va"><i data-lucide="message-circle" aria-hidden="true"></i><h4>Atención directa por WhatsApp</h4><p>Hablas directamente con quien diseña tu proyecto, sin intermediarios.</p></div>
       <div class="va"><i data-lucide="tag" aria-hidden="true"></i><h4>Precios claros</h4><p>Cada servicio tiene un precio fijo visible. Sin "a cotizar" ni sorpresas.</p></div>
       <div class="va"><i data-lucide="clock" aria-hidden="true"></i><h4>Entrega rápida</h4><p>Tu presencia digital lista en 3 a 7 días, según el servicio.</p></div>
-      <div class="va"><i data-lucide="edit" aria-hidden="true"></i><h4>Posibilidad de actualizar información</h4><p>Editas precios, productos y platos tú mismo desde una hoja simple.</p></div>
+      <div class="va"><i data-lucide="edit" aria-hidden="true"></i><h4>Posibilidad de actualizar información</h4><p>En el plan PRO editas precios, productos y platos tú mismo desde una hoja simple.</p></div>
       <div class="va"><i data-lucide="globe" aria-hidden="true"></i><h4>Dominio y hosting opcionales</h4><p>El dominio y el hosting se registran con tus datos y se cotizan por separado.</p></div>
     </div>
   </div>
@@ -1148,10 +1161,10 @@ html.theme-transition *,html.theme-transition *::before,html.theme-transition *:
       </div>
       <div class="faq-item">
         <h3 class="faq-q"><button class="faq-btn" type="button" id="faq-btn-2" aria-expanded="false" aria-controls="faq-panel-2"><span>¿Puedo editar precios y productos yo mismo?</span><span class="faq-icon" aria-hidden="true"><i data-lucide="plus"></i></span></button></h3>
-        <div class="faq-panel" id="faq-panel-2" role="region" aria-labelledby="faq-btn-2" data-open="false" aria-hidden="true"><div class="faq-inner"><p>Sí. Usas una hoja simple y la página se actualiza sola. Te enseño cómo en la entrega.</p></div></div>
+        <div class="faq-panel" id="faq-panel-2" role="region" aria-labelledby="faq-btn-2" data-open="false" aria-hidden="true"><div class="faq-inner"><p>En los planes PRO, sí: usas una hoja simple y la página se actualiza sola. En los planes básicos, los cambios los hago yo dentro de las rondas incluidas.</p></div></div>
       </div>
       <div class="faq-item">
-        <h3 class="faq-q"><button class="faq-btn" type="button" id="faq-btn-3" aria-expanded="false" aria-controls="faq-panel-3"><span>¿El dominio queda a mi nombre?</span><span class="faq-icon" aria-hidden="true"><i data-lucide="plus"></i></span></button></h3>
+        <h3 class="faq-q"><button class="faq-btn" type="button" id="faq-btn-3" aria-expanded="false" aria-controls="faq-panel-3"><span>¿Necesito dominio y hosting?</span><span class="faq-icon" aria-hidden="true"><i data-lucide="plus"></i></span></button></h3>
         <div class="faq-panel" id="faq-panel-3" role="region" aria-labelledby="faq-btn-3" data-open="false" aria-hidden="true"><div class="faq-inner"><p>Son opcionales. Si los deseas, el dominio y el hosting se registran con tus datos y se cotizan por separado.</p></div></div>
       </div>
       <div class="faq-item">
@@ -1167,11 +1180,11 @@ html.theme-transition *,html.theme-transition *::before,html.theme-transition *:
     <p class="eyebrow">Aclaraciones comerciales</p>
     <h2 id="condiciones-title">Condiciones del servicio</h2>
     <ul class="ck">
-      <li><i data-lucide="clock" aria-hidden="true"></i><strong>50 % de adelanto</strong> para iniciar el proyecto.</li>
+      <li><i data-lucide="clock" aria-hidden="true"></i><strong>50 % de adelanto</strong> para iniciar el proyecto. No empiezo a trabajar hasta recibirlo y tener toda la información de tu negocio.</li>
       <li><i data-lucide="clock" aria-hidden="true"></i><strong>50 % restante</strong> antes de la publicación.</li>
       <li><i data-lucide="globe" aria-hidden="true"></i>Dominio propio y renovaciones se pagan por separado.</li>
-      <li><i data-lucide="plus" aria-hidden="true"></i>Funcionalidades adicionales se cotizan aparte.</li>
-      <li><i data-lucide="edit" aria-hidden="true"></i>Cambios fuera del alcance acordado tienen costo adicional.</li>
+      <li><i data-lucide="plus" aria-hidden="true"></i>Funcionalidades adicionales se cotizan aparte. La entrega incluye un kit de exhibición en PDF (afiche A4 y hablador de mesa A6 con tu código QR).</li>
+      <li><i data-lucide="edit" aria-hidden="true"></i>Máximo 2 rondas de ajustes incluidas. Cada cambio extra cuesta S/ 40.</li>
     </ul>
     <p class="note">No se promete hosting, mantenimiento ni soporte ilimitado.</p>
   </div>
@@ -1241,10 +1254,10 @@ html.theme-transition *,html.theme-transition *::before,html.theme-transition *:
           <label for="f-servicio">Servicio que te interesa</label>
           <select id="f-servicio" name="servicio" aria-describedby="err-servicio" aria-invalid="false">
             <option value="" disabled selected>Selecciona un servicio</option>
-            <option value="Landing básica">Landing básica · S/ 150</option>
-            <option value="Landing elaborada">Landing elaborada · S/ 250</option>
-            <option value="Catálogo digital">Catálogo digital · S/ 250</option>
-            <option value="Menú QR">Menú QR · S/ 180</option>
+            <option value="Landing básica · S/ 190">Landing básica · S/ 190</option>
+            <option value="Landing elaborada · S/ 350">Landing elaborada · S/ 350</option>
+            <option value="Menú QR PRO / Catálogo digital · S/ 290">Menú QR PRO / Catálogo digital · S/ 290</option>
+            <option value="Menú QR básico · S/ 190">Menú QR básico · S/ 190</option>
           </select>
           <p class="err" id="err-servicio" role="alert"></p>
         </div>
@@ -1319,8 +1332,12 @@ html.theme-transition *,html.theme-transition *::before,html.theme-transition *:
 const WA_NUMBER = "51906940777"; // número con código de país (Perú 51), sin + ni espacios
 const PROJECTS = [
   {id:"mercado", name:"Catálogo con carrito", title:"Mercado Guacaipuro", url:"https://mercado-guacaipuro.vercel.app", tags:["Catálogo digital","WhatsApp","Editable"],
+   chatImg:"img/capturas/mercado-chat.png",
+   review:{stars:5,text:"Me gusto cómo quedó el catálogo para mi negocio. Mis clientes ya ordenan directo por WhatsApp y ya no pierdo pedidos.",by:"Anyer M., Mercado Guacaipuro"},
    problem:"Pedidos desordenados por chat y precios que cambian cada semana.", solution:"Catálogo digital con carrito, pedidos por WhatsApp y precios actualizados por el dueño.", result:"Los clientes ven productos y realizan pedidos directamente desde el catálogo."},
   {id:"ropa", name:"Landing page / Catálogo", title:"ARM Marca de ropa", url:"https://armshop-chi.vercel.app", tags:["Landing page","Catálogo","WhatsApp"],
+   chatImg:"img/capturas/ropa-chat.png",
+   review:{stars:5,text:"La landing quedó chevere y es súper fácil de actualizar. Mis clientes ven productos y tallas sin tener que escribirme.",by:"Jesus M., ARM Marca de ropa"},
    problem:"Una marca de ropa sin presencia web clara y catálogo ordenado.", solution:"Landing con catálogo de productos, tallas y pedido directo a WhatsApp.", result:"Los clientes navegan el catálogo y realizan pedidos fácilmente."},
   {id:"menu", name:"Menú interactivo", title:"Menú QR para restaurantes", url:"menu/menu-selva.html", tags:["Menú QR","Carta digital","WhatsApp"],
    problem:"Cartas de papel que se ensucian, quedan viejas y hay que reimprimir cuando cambia un precio.", solution:"Un menú digital con categorías, fotos y pedido directo por WhatsApp, pensado para el celular.", result:"El cliente escanea el QR, ve la carta y ordena sin esperas ni errores."},
@@ -1563,6 +1580,8 @@ function renderDetail(p){
   detail.innerHTML =
     '<h3>' + p.title + '</h3>' +
     '<div class="tags">' + p.tags.map(t => '<span>' + t + '</span>').join('') + '</div>' +
+    (p.chatImg ? '<div class="chat"><figure><h4>💬 Conversación con el cliente</h4><img src="' + p.chatImg + '" alt="Captura de la conversación por WhatsApp" loading="lazy" onerror="this.style.display=\'none\'"><figcaption>Captura real del chat donde coordinamos el proyecto.</figcaption></figure></div>' : '') +
+    (p.review ? '<div class="reseña"><h4>⭐ Reseña del cliente</h4><div class="stars">' + Array(p.review.stars).fill(iconSvg('star')).join('') + '</div><p>"' + p.review.text + '"</p><div class="who"><div><b>' + p.review.by + '</b><small>Cliente verificado</small></div></div></div>' : '') +
     '<h4>El problema</h4><p>' + p.problem + '</p>' +
     '<h4>La solución</h4><p>' + p.solution + '</p>' +
     '<h4>El resultado</h4><p>' + p.result + '</p>' +
